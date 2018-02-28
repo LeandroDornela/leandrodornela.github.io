@@ -142,7 +142,11 @@ ul.CTAs a {
 }
 
 #content button{
-    background: #009b9f
+    background: #009b9f;
+}
+
+#homeContent{
+    background: #009b9f;
 }
 
 /* ---------------------------------------------------
