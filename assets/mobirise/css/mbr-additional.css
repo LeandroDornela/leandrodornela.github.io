@@ -1477,7 +1477,7 @@ body {
   width: 30px;
   height: 2px;
   border-right: 5px;
-  background-color: #ffffff;
+  background-color: #a9ff2f;
 }
 .cid-rpaVJ0PizM button.navbar-toggler .hamburger span:nth-child(1) {
   top: 0;
@@ -1700,7 +1700,7 @@ body {
 }
 .cid-rpaVJ0PizM .nav-link:hover,
 .cid-rpaVJ0PizM .dropdown-item:hover {
-  color: #c1c1c1 !important;
+  color: #a9ff2f !important;
 }
 .cid-rpaXnr47f3 {
   background-image: url("../../../assets/images/code-blur-1535x684.png");
@@ -2283,7 +2283,7 @@ body {
 }
 .cid-rpflTUPs1b {
   padding-top: 45px;
-  padding-bottom: 90px;
+  padding-bottom: 15px;
   background-color: #232323;
 }
 .cid-rpflTUPs1b .media-container-column {
@@ -2341,6 +2341,21 @@ body {
 }
 .cid-rpflTUPs1b .mbr-author-name {
   color: #e46bff;
+}
+.cid-rppg1PZ1gj {
+  padding-top: 15px;
+  padding-bottom: 45px;
+  background: linear-gradient(0deg, #232323, #232323);
+}
+.cid-rppg1PZ1gj .mbr-iconfont-social {
+  font-size: 32px;
+  color: #a9ff2f;
+}
+.cid-rppg1PZ1gj .social-list a:focus {
+  text-decoration: none;
+}
+.cid-rppg1PZ1gj H2 {
+  color: #cccccc;
 }
 .cid-rpb99r34Zm {
   padding-top: 45px;
