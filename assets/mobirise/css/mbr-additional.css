@@ -36,6 +36,7 @@ body {
 .display-4 {
   font-family: 'Source Code Pro', monospace;
   font-size: 1rem;
+  text-align: left;
 }
 .display-4 > .mbr-iconfont {
   font-size: 1.6rem;
@@ -50,6 +51,7 @@ body {
 .display-7 {
   font-family: 'Source Code Pro', monospace;
   font-size: 0.9rem;
+  line-height: 1.5;
 }
 .display-7 > .mbr-iconfont {
   font-size: 1.44rem;
@@ -1783,7 +1785,7 @@ body {
 }
 @media (max-width: 767px) {
   .cid-rpg1Ma3iYr .mbr-text {
-    text-align: center;
+    text-align: left;
   }
 }
 .cid-rpg1Ma3iYr H1 {
