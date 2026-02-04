@@ -1,498 +1,1022 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <!-- Site made with Mobirise Website Builder v5.4.1, https://mobirise.com -->
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="generator" content="Mobirise v5.4.1, mobirise.com">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-    <link rel="shortcut icon" href="assets/images/paomedia-small-n-flat-gamepad.ico" type="image/x-icon">
-    <meta name="description" content="">
-
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="Assets/icon.ico" type="image/x-icon">
     <title>Leandro Dornela - Game Developer Portfolio</title>
-    <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
-    <link rel="stylesheet" href="assets/dropdown/css/style.css">
-    <link rel="stylesheet" href="assets/socicon/css/styles.css">
-    <link rel="stylesheet" href="assets/theme/css/style.css">
-    <link href="assets/fonts/style.css" rel="stylesheet">
-    <link rel="preload"
-        href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap"
-        as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript>
-        <link rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap">
-    </noscript>
-    <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css">
-    <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Work+Sans:wght@300;400;500&display=swap">
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --text-primary: #e6edf3;
+            --text-secondary: #7d8590;
+            --accent: #00d9ff;
+            --accent-dim: #0ea5e9;
+            --accent-secondary: #a855f7;
+            --border: #30363d;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
+        /* Background effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(0, 217, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.04) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
 
+        /* Sidebar */
+        aside {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: rgba(13, 17, 23, 0.98);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid var(--border);
+            z-index: 1000;
+            padding: 3rem 2rem;
+            overflow-y: auto;
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--text-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0rem;
+            letter-spacing: -0.02em;
+        }
+
+        .contact-info {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .contact-info a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+        }
+
+        .contact-info a:hover {
+            color: var(--accent);
+        }
+
+        .nav-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .nav-section h3 {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .nav-links a,
+        .category-link {
+            padding: 0.75rem 1rem;
+            background: transparent;
+            color: var(--text-primary);
+            text-decoration: none;
+            border: 1px solid var(--border);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: block;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .nav-links a::before,
+        .category-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-links a:hover,
+        .category-link:hover {
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+
+        .nav-links a:hover::before,
+        .category-link:hover::before {
+            left: 0;
+        }
+
+        .category-link.active {
+            background: rgba(0, 217, 255, 0.1);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .menu-toggle:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Main content */
+        main {
+            margin-left: 280px;
+            padding: 3rem;
+            min-height: 100vh;
+        }
+
+        .projects-header {
+            margin-bottom: 4rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.3s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .projects-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .projects-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        /* Project cards */
+        .projects-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
+
+        .project-card {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+            transition: border-color 0.3s ease;
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-dim);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .project-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .project-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .project-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .project-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        /* Carousel */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-primary);
+            /*background: transparent;*/
+            aspect-ratio: 16/9;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            height: 100%;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-slide img,
+        .carousel-slide video {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .carousel-btn {
+            width: 40px;
+            height: 40px;
+            background: rgba(21, 21, 21, 0.9);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .carousel-btn:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: var(--accent);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* Project info */
+        .project-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .project-year {
+            font-size: 0.9rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        .project-category {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(0, 217, 255, 0.1);
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            width: fit-content;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.9rem;
+            transition: gap 0.3s ease;
+        }
+
+        .project-link:hover {
+            gap: 1rem;
+        }
+
+        .project-link::after {
+            content: '→';
+            font-size: 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .project-card {
+                grid-template-columns: 1fr;
+            }
+
+            aside {
+                width: 260px;
+            }
+
+            main {
+                margin-left: 260px;
+                padding: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 2rem 1.5rem;
+                margin-left: 0;
+            }
+
+            .projects-header h2 {
+                font-size: 2rem;
+            }
+
+            .project-card {
+                padding: 1.5rem;
+            }
+
+            .project-title {
+                font-size: 1.5rem;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            aside {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                width: 280px;
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+            }
+
+            aside.active {
+                transform: translateX(0);
+            }
+
+            body.sidebar-open {
+                overflow: hidden;
+            }
+
+            body.sidebar-open::after {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.7);
+                z-index: 999;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
 
-    <section data-bs-version="5.1" class="menu menu3 cid-sIhSBoPqXS" once="menu" id="menu3-1">
+    <aside id="sidebar">
+        <div class="sidebar-header">
+            <h1 id="portfolio-name">Name</h1>
+            <h4 id="portfolio-position">Position</h4>
+            <div class="contact-info">
+                <a href="mailto:email" id="portfolio-email">email</a>
+                <span id="portfolio-phone">+1 (555) 123-4567</span>
+            </div>
+        </div>
 
-        <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
-            <div class="container">
-                <div class="navbar-brand">
-
-                    <span class="navbar-caption-wrap"><a class="navbar-caption text-info text-primary display-4"
-                            href="index.html#top">Leandro Dornela</a></span>
-                </div>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse"
-                    data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <div class="hamburger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
-                        
-                        <li class="nav-item"><a class="nav-link link text-info text-primary display-4"
-                                href="assets/files/resume_leandro_dornela_ribeiro.pdf"><span
-                                    class="mobi-mbri mobi-mbri-paperclip mbr-iconfont mbr-iconfont-btn"
-                                    style="color: rgb(12, 245, 198);"></span>Resume</a></li>
-                    </ul>
-                    <div class="icons-menu">
-                        <a class="iconfont-wrapper" href="https://github.com/LeandroDornela" target="_blank">
-                            <span class="p-2 mbr-iconfont socicon-github socicon"
-                                style="color: rgb(12, 245, 198); fill: rgb(12, 245, 198);"></span>
-                        </a>
-                        <a class="iconfont-wrapper" href="https://www.linkedin.com/in/leandrodornela/" target="_blank">
-                            <span class="p-2 mbr-iconfont socicon-linkedin socicon"
-                                style="color: rgb(12, 245, 198); fill: rgb(12, 245, 198);"></span>
-                        </a>
-                        <a class="iconfont-wrapper" href="https://www.artstation.com/leandrodornela" target="_blank">
-                            <span class="p-2 mbr-iconfont socicon-artstation socicon"
-                                style="color: rgb(12, 245, 198); fill: rgb(12, 245, 198);"></span>
-                        </a>
-
-                    </div>
-
-                </div>
+        <nav class="nav-section">
+            <!-- <h3>Links</h3> -->
+            <div class="nav-links">
+                <a href="Assets/resume_leandro_dornela_game_dev.pdf" target="_blank" id="resume-link">Resume</a>
+                <a href="https://github.com/yourusername" target="_blank" id="github-link">GitHub</a>
+                <a href="https://linkedin.com/in/yourusername" target="_blank" id="linkedin-link">LinkedIn</a>
+                <a href="https://artstation.com/yourusername" target="_blank" id="artstation-link">ArtStation</a>
             </div>
         </nav>
-    </section>
 
-
-    <section data-bs-version="5.1" class="header18 cid-sIl5L1Lcg9 mbr-fullscreen" id="header18-l">
-        <div class="align-center container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-7">
-                    <h1 class="mbr-section-title mbr-fonts-style mbr-white mb-3 display-1">Game Developer</h1>
-                    <h2 class="mbr-section-subtitle mbr-fonts-style mbr-white mb-3 display-2">
-                        Portfolio</h2>
-                    <p class="mbr-text mbr-fonts-style mbr-white display-7"><strong>
-                            Hi, welcome to my personal projects portfolio. Below, you’ll find some of my game programming projects. I hope you enjoy them.
-                        </strong></p>
-
-                </div>
+        <nav class="nav-section">
+            <!-- <h3>Categories</h3> -->
+            <div class="nav-links" id="category-nav">
+                <div class="category-link active" data-category="all">All Projects</div>
+                <div class="category-link" data-category="professional">Professional</div>
+                <div class="category-link" data-category="academic">Academic & Study</div>
+                <div class="category-link" data-category="hobby">Hobby</div>
+                <div class="category-link" data-category="jams">Jams</div>
             </div>
+        </nav>
+    </aside>
+
+    <main>
+        <div class="projects-header">
+            <h2>Projects</h2>
+            <p>Here you can find some of my game-related projects.</p>
         </div>
-    </section>
 
-    <section data-bs-version="5.1" class="content5 cid-sIlgu8HMNS" id="content5-o">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-12 col-lg-7">
-                    <h3 class="mbr-section-title mbr-fonts-style mb-4 display-2">Hobbyist Projects</h3>
-                </div>
-            </div>
+        <div class="projects-list" id="projects-container">
+            <!-- Projects will be dynamically inserted here -->
         </div>
-    </section>
+    </main>
 
-    <section data-bs-version="5.1" class="video4 cid-sIhXQ9Qb0S" id="video4-5">
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script>
+        // ===== EASY PROJECT CONFIGURATION =====
+        // Edit this section to add, remove, or modify projects
+        const portfolioData = {
+            name: "Leandro Dornela",
+            position: "Game Developer",
+            email: "leandro.dornela.dev@gmail.com",
+            phone: "+55 32 9 9943-2992",
+            links: {
+                resume: "resume.pdf",
+                github: "https://github.com/LeandroDornela",
+                linkedin: "https://www.linkedin.com/in/leandrodornela/",
+                artstation: "https://www.artstation.com/leandrodornela"
+            },
+            projects: [
+                {
+                    year: 2026,
+                    title: "GGJ26 - Magi Trium",
+                    category: "Unity",
+                    projectCategory: "jams",
+                    description: "Slash through corrupted creatures inspired in the Brazilian 'Folia de Reis' with a touch of dark fantasy. Change between the 3 Magi masks and use the different powers and play styles to destroy as much as you can from the corrupted hordes.",
+                    link: "https://globalgamejam.org/games/2026/magi-trium-4",
+                    media: [
+                        { type: "image", src: "Assets/magi_0.png" }
+                    ]
+                },
+                {
+                    year: 2025,
+                    title: "Procedural Floor Plan Generation Tool",
+                    category: "Unity Tool / Procedural",
+                    projectCategory: "academic",
+                    description: "A Unity tool for generating architectural floor plans and buildings using procedural algorithms, zoning subdivision, connectivity rules, and quality evaluation.",
+                    link: "https://github.com/LeandroDornela/floor-plan-generator",
+                    media: [
+                        { type: "image", src: "Assets/floor_0.gif" },
+                        { type: "image", src: "Assets/floor_1.png" },
+                        { type: "image", src: "Assets/floor_2.png" }
+                    ]
+                },
+                {
+                    year: 2025,
+                    title: "Steering Behaviors for Autonomous Characters",
+                    category: "Unity",
+                    projectCategory: "academic",
+                    description: "Unity project implementing classic Steering Behaviors for autonomous characters, originally proposed by Craig W. Reynolds.",
+                    link: "https://github.com/LeandroDornela/steering-behaviors",
+                    media: [
+                        { type: "image", src: "Assets/steering.gif" }
+                    ]
+                },
+                {
+                    year: 2024,
+                    title: "Friends Connection Status UI (MVVM)",
+                    category: "Unreal UMG",
+                    projectCategory: "academic",
+                    description: "UI exercise focused on architecture rather than visuals, implementing a friends connection status screen using the MVVM pattern. Features two lists for connected and disconnected friends, tooltips with detailed player information on hover, and toaster notifications when a friend connects. Includes a testing Game Mode to simulate connections, disconnections, and initial friend status data.",
+                    link: "https://github.com/LeandroDornela/Unreal-UMG-exercise-friendsStatus",
+                    media: [
+                        { type: "image", src: "Assets/friendStatus_0.png" },
+                        { type: "image", src: "Assets/friendStatus_1.jpg" }
+                    ]
+                },
+                {
+                    year: 2024,
+                    title: "GGJ24 - Mortal Kombard",
+                    category: "Unity",
+                    projectCategory: "jams",
+                    description: "For the longest time, the King has not been able to laugh or even smile, so he created the Mortal Kombard tournament, to find the funniest subject in the whole kingdom. In the tournament , the subjects try to make each other and the king laugh, or be thrown in the pits below. Using a webcam, play the game with a friend, taking turns trying to make each other laugh. Using a face recognition software, the game can tell if the player is laughing or not. Whoever laughs is thrown in the pits and the other wins!",
+                    link: "https://globalgamejam.org/games/2024/mortal-kombard-4",
+                    media: [
+                        { type: "image", src: "Assets/bard_0.png" }
+                    ]
+                },
+                {
+                    year: 2023,
+                    title: "Reign of Titans",
+                    category: "Unity",
+                    projectCategory: "professional",
+                    description: "Card-based multiplayer battle game with unique NFT characters. Worked as a programmer implementing core gameplay mechanics, UI systems, basic AI, and internal tools. Collaborated in a remote, multicultural team. Built UI testing tools, a character inspection tool for generated 3D assets, and a simple AI bot for autonomous gameplay testing.",
+                    link: "https://reignoftitans.gg/",
+                    media: [
+                        { type: "image", src: "Assets/titans_0.png" },
+                        { type: "image", src: "Assets/titans_1.png" },
+                        { type: "image", src: "Assets/titans_2.png" },
+                    ]
+                },
+                {
+                    year: 2023,
+                    title: "GGJ23 - Bloody Roots",
+                    category: "Unity",
+                    projectCategory: "jams",
+                    description: "After the humans destroyed the environment, to protect itself, the vegetation needed to improve its destructive power. In this turn based strategy game you will help one of the agents of mother nature to claim back the earth after the humans destroyed it, and the only way to do so is by tainting your roots with blood.",
+                    link: "https://v3.globalgamejam.org/2023/games/bloody-roots-3-0",
+                    media: [
+                        { type: "image", src: "Assets/roots_0.png" },
+                        { type: "image", src: "Assets/roots_1.png" }
+                    ]
+                },
+                {
+                    year: 2022,
+                    title: "GGJ22 - See no light",
+                    category: "Unity",
+                    projectCategory: "jams",
+                    description: "Find your way through the dark and use the light to guide your way.",
+                    link: "https://v3.globalgamejam.org/2022/games/see-no-light-7",
+                    media: [
+                        { type: "image", src: "Assets/see_0.jpg" }
+                    ]
+                },
+                {
+                    year: 2021,
+                    title: "Sofiya",
+                    category: "Unity",
+                    projectCategory: "professional",
+                    description: "Platformer game featuring character projectiles, enemy interaction, and unlockable content galleries. Responsible for the full project architecture, feature implementation, VFX, asset integration, and contributions to level design and UI. Integrated Unity level-building tools to accelerate environment creation and delivered visual polishing.",
+                    link: "https://store.steampowered.com/app/1468420/Sexcraft__Sofiya_and_the_Lewd_Clan/",
+                    media: [
+                        { type: "image", src: "Assets/sofiya_0.jpg" },
+                        { type: "image", src: "Assets/sofiya_1.jpg" },
+                        { type: "image", src: "Assets/sofiya_2.jpg" }
+                    ]
+                },
+                {
+                    year: 2021,
+                    title: "GGJ21 - ILF: Intergalactic Lost and Found",
+                    category: "Unity",
+                    projectCategory: "jams",
+                    description: "Global Game Jam project about helping characters recover lost items despite language barriers. Implemented gameplay systems and delivered a complete playable prototype during the jam.",
+                    link: "https://play.unity.com/en/games/4f403e83-01b4-4c63-871b-9ea79e46a1a0/intergalactic-lost-found",
+                    media: [
+                        { type: "image", src: "Assets/ilf_0.png" },
+                        { type: "image", src: "Assets/ilf_1.png" }
+                    ]
+                },
+                {
+                    year: 2020,
+                    title: "Puzzle Games Collection",
+                    category: "Unity",
+                    projectCategory: "professional",
+                    description: "Multiple puzzle games including Furry Heroes, Magical Girl, DominaTrix, Summer Flowers, and Villain Project. Implemented all gameplay features, mini-games, dialogues, galleries, and graphics polishing. Created a reusable project template that enabled designers to rapidly build new games.",
+                    link: "https://store.steampowered.com/app/1389710/Magical_Girl/",
+                    media: [
+                        { type: "image", src: "Assets/puzzle_0.png" },
+                        { type: "image", src: "Assets/puzzle_1.png" },
+                        { type: "image", src: "Assets/puzzle_2.png" },
+                        { type: "image", src: "Assets/puzzle_3.jpg" }
+                    ]
+                },
+                {
+                    year: 2020,
+                    title: "Boyfriend's Rescue",
+                    category: "Unity",
+                    projectCategory: "professional",
+                    description: "Platformer where character skins grant unique abilities such as projectiles, shields, double jump, and grab & swing mechanics. Responsible for full architecture, implementation, and deployment. Solved complex tentacle animation using physics and math, and implemented an asset reuse strategy for richer environments.",
+                    link: "",
+                    media: [
+                        { type: "image", src: "Assets/boy_0.png" },
+                        { type: "image", src: "Assets/boy_1.jpg" },
+                        { type: "image", src: "Assets/boy_2.jpg" },
+                        { type: "image", src: "Assets/boy_3.jpg" },
+                        { type: "image", src: "Assets/boy_4.jpg" }
+                    ]
+                },
+                {
+                    year: 2019,
+                    title: "Neon Slash",
+                    category: "Unity Mobile",
+                    projectCategory: "hobby",
+                    description: "Mobile casual game developed in Unity as part of an interdisciplinary team.",
+                    link: "https://www.youtube.com/watch?v=HNIH5le_C3k",
+                    media: [
+                        { type: "video", src: "https://www.youtube.com/embed/HNIH5le_C3k?si=3Ce4zjmhvNwr1CCV" }
+                    ]
+                },
+                {
+                    year: 2019,
+                    title: "Space Gens",
+                    category: "Unity 3D",
+                    projectCategory: "academic",
+                    description: "University project developed as a playful interface for audio recording to support children's literacy. Presented at the Brazilian Symposium on Games (SBGames). Implemented audio capture and spectrum visualization.",
+                    link: "",
+                    media: [
+                        { type: "image", src: "Assets/space_0.png" }
+                    ]
+                },
+                {
+                    year: 2019,
+                    title: "GGJ19 - Where Do I Belong",
+                    category: "Unity 3D",
+                    projectCategory: "jams",
+                    description: "Global Game Jam project developed entirely from scratch. Implemented custom platforming mechanics and a dynamic lobby that changes based on player choices.",
+                    link: "https://v3.globalgamejam.org/2019/games/where-do-i-belong",
+                    media: [
+                        { type: "image", src: "Assets/belong_0.jpg" },
+                        { type: "image", src: "Assets/belong_1.png" }
+                    ]
+                },
+                {
+                    year: 2018,
+                    title: "Inferno de Tande",
+                    category: "Unity Mobile",
+                    projectCategory: "hobby",
+                    description: "Casual side-scroller game with 9 levels and stylized art. Implemented gameplay systems, level selector, performance optimizations, and particle effects.",
+                    link: "https://www.youtube.com/watch?v=6QXL92rhyB4",
+                    media: [
+                        { type: "video", src: "https://www.youtube.com/embed/6QXL92rhyB4" }
+                    ]
+                },
+                {
+                    year: 2018,
+                    title: "Cellular Organelles Quiz",
+                    category: "Unity 3D",
+                    projectCategory: "hobby",
+                    description: "Quiz game prototype about cellular organelles designed for children. Implemented gameplay systems including scoreboard and video integration.",
+                    link: "",
+                    media: [
+                        { type: "image", src: "Assets/cells_0.jpg" }
+                    ]
+                },
+                {
+                    year: 2018,
+                    title: "Combat Mechanics Prototype",
+                    category: "Unity 3D",
+                    projectCategory: "academic",
+                    description: "Prototype combat system featuring movement, melee combat, special abilities, experience system, checkpoints, object interaction, and basic AI.",
+                    link: "https://github.com/LeandroDornela/CombatMechanicsPrototype",
+                    media: [
+                        { type: "video", src: "https://www.youtube.com/embed/XE3fpRp-kpI" }
+                    ]
+                },
+                {
+                    year: 2018,
+                    title: "2.5D Platform Prototype",
+                    category: "Unity",
+                    projectCategory: "academic",
+                    description: "2.5D platform movement prototype created to explore perspective-based gameplay. Implemented mechanics that allow smooth depth transitions and traversal of loops while maintaining readable player control.",
+                    link: "",
+                    media: [
+                        { type: "video", src: "https://www.youtube.com/embed/RvPmCpm1mi0" }
+                    ]
+                },
+                {
+                    year: 2018,
+                    title: "GGJ18 - Alex Vortex vs Depression",
+                    category: "Unity 3D",
+                    projectCategory: "jams",
+                    description: "Global Game Jam project. Implemented core gameplay mechanics, modeled the main character weapon, and created a fake wireframe-inspired visual style. The player automatically shoots following the rhythm of the music.",
+                    link: "https://v3.globalgamejam.org/2018/games/alex-vortex-vs-depression",
+                    media: [
+                        { type: "image", src: "Assets/alex_0.jpg" },
+                        { type: "image", src: "Assets/alex_1.png" }
+                    ]
+                },
+                {
+                    year: 2016,
+                    title: "Crash Ball",
+                    category: "Computer Graphics / OpenGL",
+                    projectCategory: "academic",
+                    description: "Mini-game developed using OpenGL immediate mode. Responsible for all graphics implementation, 3D models, and UI elements. Served as an introduction to OpenGL and collision detection concepts.",
+                    link: "https://github.com/LeandroDornela/CrashBall",
+                    media: [
+                        { type: "video", src: "https://www.youtube.com/embed/p-y4G1g7aUE" }
+                    ]
+                },
+                {
+                    year: 2017,
+                    title: "GLSL Sphere Path Tracer",
+                    category: "Computer Graphics / GLSL",
+                    projectCategory: "academic",
+                    description: "GLSL path tracer adapted from a basic ray tracing implementation over a single weekend. Features sphere-based geometry, ray–sphere intersections, reflections, and progressive image accumulation. Focused on rapidly extending a ray tracer into a physically based rendering approach while deepening understanding of light transport and GPU parallelism.",
+                    link: "",
+                    media: [
+                        { type: "video", src: "https://www.youtube.com/embed/pXNWrYPMNBI" }
+                    ]
+                }
+            ]
+        };
 
+        // ===== AUTO-RENDERING CODE (No need to edit below) =====
 
-        <div class="container">
-            <div class="title-wrapper mb-5">
+        // Set header information
+        document.getElementById('portfolio-name').textContent = portfolioData.name;
+        document.getElementById('portfolio-position').textContent = portfolioData.position;
+        document.getElementById('portfolio-email').textContent = portfolioData.email;
+        document.getElementById('portfolio-email').href = `mailto:${portfolioData.email}`;
+        document.getElementById('portfolio-phone').textContent = portfolioData.phone;
 
-            </div>
-            <div class="row align-items-center">
-                <div class="col-12 col-lg-5 video-block">
-                    <div class="video-wrapper"><iframe class="mbr-embedded-video"
-                            src="https://www.youtube.com/embed/HNIH5le_C3k?rel=0&amp;amp;showinfo=0&amp;autoplay=0&amp;loop=0"
-                            width="1280" height="720" frameborder="0" allowfullscreen></iframe></div>
+        // Set header links
+        document.getElementById('resume-link').href = portfolioData.links.resume;
+        document.getElementById('github-link').href = portfolioData.links.github;
+        document.getElementById('linkedin-link').href = portfolioData.links.linkedin;
+        document.getElementById('artstation-link').href = portfolioData.links.artstation;
 
-                </div>
-                <div class="col-12 col-lg">
-                    <div class="text-wrapper">
-                        <h5 class="mbr-section-subtitle mbr-fonts-style mb-3 display-5"><strong>Guará Games - Neon
-                                Slash, Programmer
-                            </strong>
-                            <div><strong>2019, Released Game</strong></div>
-                        </h5>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            My second project in Guará Games. It's a cyberpunk themed addictive (and kinda hard) casual
-                            game. Great time (and patience) killer.<br><br>Technology:&nbsp; Unity 3D, C#<br>
-                            <br>Achievements:&nbsp;Achievements: ADS integration, gameplay programming, UI programming,
-                            performance optimization, particles, post-processing, translation.<br><br><a
-                                href="https://play.google.com/store/apps/details?id=com.GuaraGames.NeonSlash"
-                                class="text-info">Google Play</a>
-                        </p>
+        // Current filter state
+        let currentCategory = 'all';
+
+        // Function to render projects based on category
+        function renderProjects(category = 'all') {
+            const projectsContainer = document.getElementById('projects-container');
+            projectsContainer.innerHTML = '';
+
+            // Filter projects
+            const filteredProjects = category === 'all'
+                ? portfolioData.projects
+                : portfolioData.projects.filter(p => p.projectCategory === category);
+
+            // Sort by year (descending)
+            const sortedProjects = [...filteredProjects].sort((a, b) => b.year - a.year);
+
+            // Render each project
+            sortedProjects.forEach((project, index) => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'project-card';
+
+                const carouselHTML = `
+                    <div class="carousel-container">
+                        <div class="carousel-track" data-carousel="${index}">
+                            ${project.media.map(item => `
+                                <div class="carousel-slide">
+                                    ${item.type === 'video'
+                        ? item.src.includes('youtube.com') || item.src.includes('youtu.be')
+                            ? `<iframe src="${item.src}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+                            : `<video src="${item.src}" controls></video>`
+                        : `<img src="${item.src}" alt="${project.title}">`
+                    }
+                                </div>
+                            `).join('')}
+                        </div>
+                        ${project.media.length > 1 ? `
+                            <div class="carousel-controls">
+                                <button class="carousel-btn" onclick="moveCarousel(${index}, -1)">‹</button>
+                                <button class="carousel-btn" onclick="moveCarousel(${index}, 1)">›</button>
+                            </div>
+                            <div class="carousel-indicators">
+                                ${project.media.map((_, i) =>
+                        `<div class="indicator ${i === 0 ? 'active' : ''}" onclick="goToSlide(${index}, ${i})"></div>`
+                    ).join('')}
+                            </div>
+                        ` : ''}
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                `;
 
-    <section data-bs-version="5.1" class="image1 cid-sIlh5fiF4a" id="image1-v">
-
-
-
-
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-12 col-lg-5">
-                    <div class="image-wrapper">
-                        <img src="assets/images/bioquiz-1116x628.jpg" alt="Mobirise">
-
+                const infoHTML = `
+                    <div class="project-info">
+                        <div class="project-year">${project.year}</div>
+                        <h3 class="project-title">${project.title}</h3>
+                        <div class="project-category">${project.category}</div>
+                        <p class="project-description">${project.description}</p>
+                        <a href="${project.link}" target="_blank" class="project-link">View Project</a>
                     </div>
-                </div>
-                <div class="col-12 col-lg">
-                    <div class="text-wrapper">
-                        <h3 class="mbr-section-title mbr-fonts-style mb-3 display-5">
+                `;
 
-                            <div><br></div>
-                            <div><strong>Guará Games - Cellular Organelles Quiz, Programmer
-                                </strong></div>
-                            <div><strong>2018, Prototype</strong></div>
-                        </h3>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            Another project in Guará Games. It's a quiz game prototype about cellular organelles that
-                            appears to be made for toddlers but has really hard questions.<br><br>Technology:&nbsp;
-                            Unity 3D, C#<br><br>Achievements:&nbsp;Scoreboard, Video integration.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                projectCard.innerHTML = carouselHTML + infoHTML;
+                projectsContainer.appendChild(projectCard);
+            });
 
-    <section data-bs-version="5.1" class="video4 cid-sIlh66WT4B" id="video4-w">
+            // Reinitialize carousel states
+            window.carouselStates = sortedProjects.map(() => ({ currentIndex: 0 }));
+        }
 
+        // Initial render
+        renderProjects();
 
-        <div class="container">
-            <div class="title-wrapper mb-5">
+        // Category filtering
+        const categoryLinks = document.querySelectorAll('.category-link');
+        categoryLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                // Update active state
+                categoryLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
 
-            </div>
-            <div class="row align-items-center">
-                <div class="col-12 col-lg-5 video-block">
-                    <div class="video-wrapper"><iframe class="mbr-embedded-video"
-                            src="https://www.youtube.com/embed/6QXL92rhyB4?rel=0&amp;amp;showinfo=0&amp;autoplay=0&amp;loop=0"
-                            width="1280" height="720" frameborder="0" allowfullscreen></iframe></div>
+                // Filter projects
+                const category = link.dataset.category;
+                currentCategory = category;
+                renderProjects(category);
 
-                </div>
-                <div class="col-12 col-lg">
-                    <div class="text-wrapper">
-                        <h5 class="mbr-section-subtitle mbr-fonts-style mb-3 display-5"><strong>Guará Games - O Inferno
-                                de Tande, Programmer
-                            </strong>
-                            <div><strong>2018, Game Released</strong></div>
-                        </h5>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            My first project in Guará Games. A casual game with 9 levels and amazing
-                            art.<br><br>Technology:&nbsp; Unity 3D, C#<br>
-                            <br>Achievements:&nbsp;Gameplay programming, level selector, performance optimization,
-                            particles.<br>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                // Close mobile sidebar if open
+                if (window.innerWidth <= 768) {
+                    document.getElementById('sidebar').classList.remove('active');
+                    document.getElementById('menu-toggle').textContent = '☰';
+                    document.body.classList.remove('sidebar-open');
+                }
+            });
+        });
 
-    <section data-bs-version="5.1" class="content5 cid-sIlgywADWk" id="content5-p">
+        // Carousel functionality
+        window.carouselStates = portfolioData.projects.map(() => ({ currentIndex: 0 }));
 
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-12 col-lg-7">
-                    <h3 class="mbr-section-title mbr-fonts-style mb-4 display-2">Academic Projects</h3>
+        function moveCarousel(carouselIndex, direction) {
+            const carousel = document.querySelector(`[data-carousel="${carouselIndex}"]`);
+            if (!carousel) return;
 
-                    <p class="mbr-text mbr-fonts-style display-7"></p>
-                </div>
-            </div>
-        </div>
-    </section>
+            const slides = carousel.children;
+            const indicators = carousel.parentElement.querySelectorAll('.indicator');
 
-    <section data-bs-version="5.1" class="image1 cid-sIlhaEXbZb" id="image1-x">
+            window.carouselStates[carouselIndex].currentIndex += direction;
 
+            if (window.carouselStates[carouselIndex].currentIndex < 0) {
+                window.carouselStates[carouselIndex].currentIndex = slides.length - 1;
+            } else if (window.carouselStates[carouselIndex].currentIndex >= slides.length) {
+                window.carouselStates[carouselIndex].currentIndex = 0;
+            }
 
+            carousel.style.transform = `translateX(-${window.carouselStates[carouselIndex].currentIndex * 100}%)`;
 
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === window.carouselStates[carouselIndex].currentIndex);
+            });
+        }
 
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-12 col-lg-5">
-                    <div class="image-wrapper">
-                        <img src="assets/images/untitled-1.png" alt="Mobirise">
+        function goToSlide(carouselIndex, slideIndex) {
+            const carousel = document.querySelector(`[data-carousel="${carouselIndex}"]`);
+            if (!carousel) return;
 
-                    </div>
-                </div>
-                <div class="col-12 col-lg">
-                    <div class="text-wrapper">
-                        <h3 class="mbr-section-title mbr-fonts-style mb-3 display-5"><strong>Space Gens, Programmer and
-                                Artist, 2019, Prototype</strong></h3>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            Project developed at the university as part of a larger project. My responsibility was to
-                            develop the app that works as a playful interface for recording audio to help children's
-                            literacy. The project was presented at the Brazilian Games Symposium
-                            (SBGames).<br><br>Technology:&nbsp;Unity 3D, C#<br><br>Achievements: Audio capture, spectrum
-                            visualization&nbsp;&nbsp;<br></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            const indicators = carousel.parentElement.querySelectorAll('.indicator');
 
-    <section data-bs-version="5.1" class="video4 cid-sIlhjxbbPr" id="video4-y">
+            window.carouselStates[carouselIndex].currentIndex = slideIndex;
+            carousel.style.transform = `translateX(-${slideIndex * 100}%)`;
 
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === slideIndex);
+            });
+        }
 
-        <div class="container">
-            <div class="title-wrapper mb-5">
+        // Make functions global
+        window.moveCarousel = moveCarousel;
+        window.goToSlide = goToSlide;
 
-            </div>
-            <div class="row align-items-center">
-                <div class="col-12 col-lg-5 video-block">
-                    <div class="video-wrapper"><iframe class="mbr-embedded-video"
-                            src="https://www.youtube.com/embed/XE3fpRp-kpI?rel=0&amp;amp;showinfo=0&amp;autoplay=0&amp;loop=0"
-                            width="1280" height="720" frameborder="0" allowfullscreen></iframe></div>
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                window.carouselStates.forEach((_, index) => moveCarousel(index, -1));
+            } else if (e.key === 'ArrowRight') {
+                window.carouselStates.forEach((_, index) => moveCarousel(index, 1));
+            }
+        });
 
-                </div>
-                <div class="col-12 col-lg">
-                    <div class="text-wrapper">
-                        <h5 class="mbr-section-subtitle mbr-fonts-style mb-3 display-5"><strong>Combat Mechanics,
-                                Programmer and Designer
-                            </strong>
-                            <div><strong>2018, Mechanics</strong></div>
-                        </h5>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            This is a basic combat system project and implementation, with movement, close combat and
-                            special abilities.<br><br>Technology:&nbsp;Unity 3D, C#<br>
-                            <br>Achievements:&nbsp;6 different types of hand attacks and possibility to add more, 2
-                            special abilities implemented, walk and run, row, skill experience and level up, objects
-                            interaction, checkpoints, basic (dumb) AI.<br><br><a
-                                href="https://github.com/LeandroDornela/CombatMechanicsPrototype" class="text-info">Git
-                                Source Code</a><br>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        // Mobile sidebar toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.getElementById('sidebar');
 
-    <section data-bs-version="5.1" class="video4 cid-sIlhki440w" id="video4-z">
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            document.body.classList.toggle('sidebar-open');
+            menuToggle.textContent = sidebar.classList.contains('active') ? '✕' : '☰';
+        });
 
-
-        <div class="container">
-            <div class="title-wrapper mb-5">
-
-            </div>
-            <div class="row align-items-center">
-                <div class="col-12 col-lg-5 video-block">
-                    <div class="video-wrapper"><iframe class="mbr-embedded-video"
-                            src="https://www.youtube.com/embed/RvPmCpm1mi0?rel=0&amp;amp;showinfo=0&amp;autoplay=0&amp;loop=0"
-                            width="1280" height="720" frameborder="0" allowfullscreen></iframe></div>
-
-                </div>
-                <div class="col-12 col-lg">
-                    <div class="text-wrapper">
-                        <h5 class="mbr-section-subtitle mbr-fonts-style mb-3 display-5">
-
-                            <div><br></div>
-                            <div><strong>2.5D Platform, Programmer
-                                </strong></div>
-                            <div><strong>2018, Mechanics</strong></div>
-                        </h5>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            2.5D platform movement prototype. Developed to test an idea on how to make a 2.5D platform
-                            game work with a good perspective. The results were satisfactory, it´s even possible for the
-                            player to go through loops.<br><br>Technology:&nbsp;Unity 3D, C#<br>
-                            <br>Achievements:&nbsp;Perspective platform<br>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section data-bs-version="5.1" class="video4 cid-sIlhllAqRs" id="video4-10">
-
-
-        <div class="container">
-            <div class="title-wrapper mb-5">
-
-            </div>
-            <div class="row align-items-center">
-                <div class="col-12 col-lg-5 video-block">
-                    <div class="video-wrapper"><iframe class="mbr-embedded-video"
-                            src="https://www.youtube.com/embed/p-y4G1g7aUE?rel=0&amp;amp;showinfo=0&amp;autoplay=0&amp;loop=0"
-                            width="1280" height="720" frameborder="0" allowfullscreen></iframe></div>
-
-                </div>
-                <div class="col-12 col-lg">
-                    <div class="text-wrapper">
-                        <h5 class="mbr-section-subtitle mbr-fonts-style mb-3 display-5"><strong>Crash Ball, Programmer
-                                and Artist
-                            </strong>
-                            <div><strong>2016, Mini game and Graphics</strong></div>
-                        </h5>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            This was made in OpenGL immediate mode. My part was to implement all graphics and make the
-                            models and ui elements.<br><br>Technology:&nbsp; C++, OpenGL<br>
-                            <br>Achievements:&nbsp;Introduction to OpenGL, Circle collision and response.<br><br><a
-                                href="https://github.com/LeandroDornela/CrashBall" class="text-info">Git Source
-                                Code</a><br>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section data-bs-version="5.1" class="content5 cid-sIlgDFOfs2" id="content5-q">
-
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-12 col-lg-7">
-                    <h3 class="mbr-section-title mbr-fonts-style mb-4 display-2">Game Jam Projects</h3>
-
-                    <p class="mbr-text mbr-fonts-style display-7"></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section data-bs-version="5.1" class="image1 cid-sIlhqy9rO7" id="image1-11">
-
-
-
-
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-12 col-lg-5">
-                    <div class="image-wrapper">
-                        <img src="assets/images/ilf.png" alt="Mobirise">
-
-                    </div>
-                </div>
-                <div class="col-12 col-lg">
-                    <div class="text-wrapper">
-                        <h3 class="mbr-section-title mbr-fonts-style mb-3 display-5"><strong>ILF - Intergalactic Lost
-                                and Found, Programmer<br>2021, Prototype</strong></h3>
-                        <p class="mbr-text mbr-fonts-style display-7">Another project with my friends from Guara Games
-                            was made at the Global Game Jam. Follows the description on the page “This game is about
-                            Cleber, a space Lost and Found employee who needs to help people find what they have lost.
-                            The problem is, he has some issues with his universal translator so there are some parts of
-                            the conversations he can't understand. Try to make a guess with what you got from people's
-                            saying and have fun!”
-                            <br><br>Technology:&nbsp;Unity 3D, C#<br><br>Achievements: Being able to execute the initial
-                            project proposal in a GGJ
-                            <br><br><a href="https://v3.globalgamejam.org/2021/games/got-it-there-1"
-                                class="text-info">Global Game Jam page</a><br><a
-                                href="https://play.unity.com/mg/other/intergalacticlost-found_1-0-0"
-                                class="text-info">Play online</a><a
-                                href="https://v3.globalgamejam.org/2021/games/got-it-there-1"
-                                class="text-info"><br></a><br>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section data-bs-version="5.1" class="image1 cid-sIlhrqfRFi" id="image1-12">
-
-
-
-
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-12 col-lg-5">
-                    <div class="image-wrapper">
-                        <img src="assets/images/where-1116x628.jpg" alt="Mobirise">
-
-                    </div>
-                </div>
-                <div class="col-12 col-lg">
-                    <div class="text-wrapper">
-                        <h3 class="mbr-section-title mbr-fonts-style mb-3 display-5"><strong>Where Do I Belong,
-                                Programmer
-                            </strong>
-                            <div><strong>2019, Prototype</strong></div>
-                        </h3>
-                        <p class="mbr-text mbr-fonts-style display-7">In this GGJ edition I decided to make everything
-                            from scratch to practice. It was tiring, but I managed and strengthened my knowledge with
-                            it.
-                            <br><br>Technology:&nbsp;Unity 3D, C#<br><br>Achievements:&nbsp;Platform from scratch, the
-                            lobby changes depending on the player choices in each level.<br><br><a
-                                href="https://v3.globalgamejam.org/2019/games/where-do-i-belong"
-                                class="text-info">Global Game Jam page</a><br>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section data-bs-version="5.1" class="image1 cid-sIlhs0hGKz" id="image1-13">
-
-
-
-
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-12 col-lg-5">
-                    <div class="image-wrapper">
-                        <img src="assets/images/alexvortex-1116x628.jpg" alt="Mobirise">
-
-                    </div>
-                </div>
-                <div class="col-12 col-lg">
-                    <div class="text-wrapper">
-                        <h3 class="mbr-section-title mbr-fonts-style mb-3 display-5"><strong>Alex Vortex vs Depression,
-                                Programmer
-                            </strong>
-                            <div><strong>2018, Prototype</strong></div>
-                        </h3>
-                        <p class="mbr-text mbr-fonts-style display-7">
-                            My fist time in a game jam. My job was to make the basic gameplay, modeling the main
-                            character´s very 80´s guitar-piano-shaped weapon and the wireframe-like visual (just check
-                            the game, you´ll see what I mean... I guess. I hope).<br><br>Technology:&nbsp;Unity 3D,
-                            C#<br><br>Achievements:&nbsp;First game jam, fake wireframe visuals, the player
-                            automatically shoots to the rhythm of the song.<br><br><a
-                                href="https://v3.globalgamejam.org/2018/games/alex-vortex-vs-depression"
-                                class="text-info">Global Game Jam page</a><br></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    </section>
-    <section
-        style="background-color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; color:#aaa; font-size:12px; padding: 0; align-items: center; display: flex;">
-        <a href="https://mobirise.site/l" style="flex: 1 1; height: 3rem; padding-left: 1rem;"></a>
-    </section>
-    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/smoothscroll/smooth-scroll.js"></script>
-    <script src="assets/ytplayer/index.js"></script>
-    <script src="assets/dropdown/js/navbar-dropdown.js"></script>
-    <script src="assets/playervimeo/vimeo_player.js"></script>
-    <script src="assets/theme/js/script.js"></script>
-    <script src="assets/formoid/formoid.min.js"></script>
-
-
+        // Close sidebar when clicking outside
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 &&
+                !e.target.closest('#sidebar') &&
+                !e.target.closest('#menu-toggle') &&
+                sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+                document.body.classList.remove('sidebar-open');
+                menuToggle.textContent = '☰';
+            }
+        });
+    </script>
 </body>
 
 </html>
