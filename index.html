@@ -207,7 +207,7 @@
         }
 
         .projects-header {
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
             opacity: 0;
             animation: fadeInUp 0.8s ease-out 0.3s forwards;
         }
@@ -225,84 +225,54 @@
         }
 
         .projects-header h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .projects-header p {
             color: var(--text-secondary);
             font-size: 1.1rem;
-            font-weight: 300;
         }
 
-        /* Project cards - REDUCED SIZE BY 20% */
-        .projects-list {
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
-        }
-
-        .project-card {
+        /* Grid Container */
+        #projects-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.5s forwards;
+            opacity: 0;
+        }
+
+        /* Project Card */
+        .project-card {
             background: var(--bg-secondary);
             border: 1px solid var(--border);
-            padding: 2rem;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out forwards;
-            transition: border-color 0.3s ease;
-            position: relative;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .project-card:hover {
-            border-color: var(--accent-dim);
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 217, 255, 0.15);
         }
 
-        .project-card:hover::before {
-            opacity: 1;
-        }
-
-        .project-card:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .project-card:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .project-card:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        .project-card:nth-child(4) {
-            animation-delay: 0.4s;
-        }
-
-        .project-card:nth-child(5) {
-            animation-delay: 0.5s;
-        }
-
-        /* Carousel - with left/right arrows */
+        /* Carousel Container */
         .carousel-container {
             position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
             overflow: hidden;
             background: var(--bg-primary);
-            aspect-ratio: 16/9;
         }
 
         .carousel-track {
@@ -317,46 +287,49 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
         }
 
-        .carousel-slide img,
-        .carousel-slide video {
+        .carousel-slide img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
         }
 
+        .carousel-slide img:hover {
+            transform: scale(1.05);
+        }
+
+        .carousel-slide video,
         .carousel-slide iframe {
             width: 100%;
             height: 100%;
+            object-fit: cover;
         }
 
-        /* Left/Right navigation arrows - positioned on sides */
+        /* Carousel Navigation */
         .carousel-nav {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            width: 45px;
-            height: 45px;
-            background: rgba(21, 21, 21, 0.8);
-            border: 1px solid var(--border);
+            background: rgba(0, 0, 0, 0.5);
             color: var(--text-primary);
+            border: none;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5rem;
             cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
-            font-size: 1.5rem;
-            opacity: 0.7;
-            z-index: 10;
         }
 
         .carousel-nav:hover {
             background: var(--accent);
             color: var(--bg-primary);
-            border-color: var(--accent);
-            opacity: 1;
         }
 
         .carousel-nav.prev {
@@ -367,9 +340,10 @@
             right: 0.5rem;
         }
 
+        /* Carousel Indicators */
         .carousel-indicators {
             position: absolute;
-            bottom: 1rem;
+            bottom: 0.75rem;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -381,63 +355,27 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: var(--border);
+            background: rgba(255, 255, 255, 0.4);
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .indicator.active {
             background: var(--accent);
-            width: 24px;
-            border-radius: 4px;
+            transform: scale(1.2);
         }
 
-        /* Lightbox for enlarged images */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 10000;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+        .indicator:hover {
+            background: rgba(255, 255, 255, 0.8);
         }
 
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox img {
-            max-width: 95%;
-            max-height: 95%;
-            object-fit: contain;
-            box-shadow: 0 0 50px rgba(0, 217, 255, 0.3);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            color: white;
-            font-size: 3rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .lightbox-close:hover {
-            color: var(--accent);
-        }
-
-        /* Project info - REDUCED SPACING */
+        /* Project Info */
         .project-info {
+            padding: 1.5rem;
             display: flex;
             flex-direction: column;
-            justify-content: top;
-            gap: 0.1rem;
+            gap: 0.75rem;
+            flex: 1;
         }
 
         .project-meta {
@@ -445,58 +383,50 @@
             align-items: center;
             gap: 0.5rem;
             font-size: 0.85rem;
-            color: var(--text-tertiary);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 400;
-            margin-bottom: 0.3rem;
+            color: var(--text-secondary);
         }
 
         .project-year {
+            font-weight: 600;
             color: var(--accent);
-        }
-
-        .project-company {
-            color: var(--text-tertiary);
         }
 
         .project-meta-separator {
-            color: var(--border);
+            opacity: 0.5;
+        }
+
+        .project-company {
+            color: var(--text-secondary);
         }
 
         .project-title {
-            font-size: 1.6rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.01em;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0;
         }
 
-        /* Tags instead of single category */
         .project-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-bottom: 0.6rem;
+            gap: 0.5rem;
         }
 
         .project-tag {
-            padding: 0.3rem 0.7rem;
             background: rgba(0, 217, 255, 0.1);
-            border: 1px solid rgba(0, 217, 255, 0.3);
             color: var(--accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
             font-size: 0.75rem;
-            font-weight: 400;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border-radius: 3px;
+            font-weight: 500;
+            border: 1px solid rgba(0, 217, 255, 0.2);
         }
 
         .project-description {
-            color: var(--text-tertiary);
-            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
             line-height: 1.6;
-            font-weight: 300;
-            margin-bottom: 1rem;
+            flex: 1;
         }
 
         .project-link {
@@ -507,11 +437,12 @@
             text-decoration: none;
             border: 1px solid var(--accent);
             font-size: 0.85rem;
-            font-weight: 500;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             transition: all 0.3s ease;
-            align-self: flex-start;
+            text-align: center;
+            margin-top: auto;
         }
 
         .project-link:hover {
@@ -519,11 +450,72 @@
             color: var(--bg-primary);
         }
 
-        /* Responsive */
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--text-primary);
+            width: 50px;
+            height: 50px;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-close:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1400px) {
+            #projects-container {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
         @media (max-width: 1024px) {
-            .project-card {
-                grid-template-columns: 1fr;
+            #projects-container {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
                 gap: 1.5rem;
+            }
+
+            .project-title {
+                font-size: 1.1rem;
             }
         }
 
@@ -546,12 +538,12 @@
                 padding: 5rem 1.5rem 2rem;
             }
 
-            .projects-header h2 {
-                font-size: 2rem;
+            #projects-container {
+                grid-template-columns: 1fr;
             }
 
-            .project-title {
-                font-size: 1.3rem;
+            .projects-header h2 {
+                font-size: 2rem;
             }
 
             body.sidebar-open {
@@ -562,27 +554,27 @@
 </head>
 
 <body>
-    <!-- Mobile menu toggle -->
-    <button id="menu-toggle" class="menu-toggle">☰</button>
+    <!-- Mobile Menu Toggle -->
+    <button class="menu-toggle" id="menu-toggle">☰</button>
 
     <!-- Sidebar -->
     <aside id="sidebar">
         <div class="sidebar-header">
-            <h1 id="portfolio-name">Your Name</h1>
+            <h1 id="portfolio-name">Loading...</h1>
             <div class="contact-info">
-                <span id="portfolio-position">Game Developer</span><br>
-                <a href="mailto:email@example.com" id="portfolio-email">email@example.com</a>
-                <span id="portfolio-phone">+00 (00) 00000-0000</span>
+                <span id="portfolio-title">Game Developer</span><br>
+                <a href="mailto:" id="portfolio-email">email@example.com</a>
+                <a href="tel:" id="portfolio-phone">+00 000 000 0000</a>
             </div>
         </div>
 
         <nav class="nav-section">
             <h3>Links</h3>
             <div class="nav-links">
-                <a href="#" target="_blank" id="resume-link">Resume</a>
-                <a href="#" target="_blank" id="github-link">GitHub</a>
-                <a href="#" target="_blank" id="linkedin-link">LinkedIn</a>
-                <a href="#" target="_blank" id="artstation-link">ArtStation</a>
+                <a href="#" id="resume-link" target="_blank">Resume</a>
+                <a href="#" id="github-link" target="_blank">GitHub</a>
+                <a href="#" id="linkedin-link" target="_blank">LinkedIn</a>
+                <a href="#" id="artstation-link" target="_blank">ArtStation</a>
             </div>
         </nav>
 
@@ -591,36 +583,35 @@
             <div class="nav-links">
                 <div class="category-link active" data-category="all">All Projects</div>
                 <div class="category-link" data-category="professional">Professional</div>
-                <div class="category-link" data-category="jams">Game Jams</div>
-                <!-- <div class="category-link" data-category="hobby">Hobby</div> -->
                 <div class="category-link" data-category="academic">Academic & Studies</div>
+                <div class="category-link" data-category="jams">Game Jams</div>
             </div>
         </nav>
     </aside>
 
-    <!-- Main content -->
+    <!-- Main Content -->
     <main>
         <header class="projects-header">
             <h2>Projects</h2>
-            <p>A collection of game development work spanning professional projects, game jams, and personal experiments.</p>
+            <p>collection of game development work spanning professional projects, game jams, and personal experiments.</p>
         </header>
 
-        <div class="projects-list" id="projects-container">
+        <div id="projects-container">
             <!-- Projects will be dynamically inserted here -->
         </div>
     </main>
 
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
-        <span class="lightbox-close" id="lightbox-close">&times;</span>
-        <img src="" alt="Enlarged view" id="lightbox-img">
+        <button class="lightbox-close" id="lightbox-close">✕</button>
+        <img src="" alt="Lightbox Image" id="lightbox-img">
     </div>
 
     <script>
-        // ===== PORTFOLIO DATA =====
-        const portfolioData = {
+        // Portfolio data
+       const portfolioData = {
             name: "Leandro Dornela",
-            position: "Game Developer",
+            title: "Game Developer",
             email: "leandro.dornela.dev@gmail.com",
             phone: "+55 (32) 9 9943-2992",
             links: {
@@ -633,7 +624,7 @@
                 {
                     year: 2026,
                     title: "GGJ26 - Magi Trium",
-                    tags: ["Unity"],
+                    tags: ["Unity", "Game Jam"],
                     projectCategory: "jams",
                     company: "",
                     description: "Slash through corrupted creatures inspired in the Brazilian 'Folia de Reis' with a touch of dark fantasy. Change between the 3 Magi masks and use the different powers and play styles to destroy as much as you can from the corrupted hordes.",
@@ -913,11 +904,10 @@
             ]
         };
 
-        // ===== AUTO-RENDERING CODE =====
 
-        // Set header information
+        // Set portfolio header info
         document.getElementById('portfolio-name').textContent = portfolioData.name;
-        document.getElementById('portfolio-position').textContent = portfolioData.position;
+        document.getElementById('portfolio-title').textContent = portfolioData.title;
         document.getElementById('portfolio-email').textContent = portfolioData.email;
         document.getElementById('portfolio-email').href = `mailto:${portfolioData.email}`;
         document.getElementById('portfolio-phone').textContent = portfolioData.phone;
