@@ -23,6 +23,7 @@
             --radius-main: 8px;
 
             --shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.285);
+            --shadow-card: 2px 4px 16px 2px rgba(0, 0, 0, 0.442);
             --shadow-text: 0 2px 8px rgba(0, 0, 0, 0.285);
             --glow: 0 0 32px 4px rgba(0, 217, 255, 0.25);
             --glow-text: 0 0 8px rgba(0, 217, 255, 0.697);
@@ -281,6 +282,7 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            box-shadow: var(--shadow-card);
         }
 
         .project-card:hover {
@@ -629,7 +631,7 @@
     <main>
         <header class="projects-header">
             <h2>Projects</h2>
-            <p>collection of game development work spanning professional projects, game jams, and personal experiments.</p>
+            <!-- <p>collection of game development work spanning professional projects, game jams, and personal experiments.</p> -->
         </header>
 
         <div id="projects-container">
@@ -754,7 +756,7 @@
 
                 // Conditionally show "View Project" button only if link exists
                 const linkHTML = project.link 
-                    ? `<a href="${project.link}" target="_blank" class="project-link">View Project</a>`
+                    ? `<a href="${project.link}" target="_blank" class="project-link">Project Page</a>`
                     : '';
 
                 const infoHTML = `
