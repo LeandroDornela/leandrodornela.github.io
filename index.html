@@ -19,6 +19,14 @@
             --accent-dim: #0ea5e9;
             --accent-secondary: #a855f7;
             --border: #30363d;
+            
+            /* Border radius*/
+            --radius-main: 8px;
+
+            --shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.285);
+            --shadow-text: 0 2px 8px rgba(0, 0, 0, 0.285);
+            --glow: 0 0 32px 4px rgba(0, 217, 255, 0.25);
+            --glow-text: 0 0 8px rgba(0, 217, 255, 0.697);
         }
 
         * {
@@ -31,7 +39,7 @@
             font-family: 'Work Sans', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
+            line-height: 1.3;
             overflow-x: hidden;
         }
 
@@ -44,8 +52,8 @@
             width: 100%;
             height: 100%;
             background:
-                radial-gradient(circle at 20% 50%, rgba(0, 217, 255, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.04) 0%, transparent 50%);
+                radial-gradient(circle at 20% 50%, rgba(0, 234, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 183, 0, 0.1) 0%, transparent 50%);
             pointer-events: none;
             z-index: -1;
         }
@@ -93,7 +101,7 @@
             font-size: 0.85rem;
             color: var(--text-secondary);
             font-weight: 300;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
             line-height: 1.8;
         }
 
@@ -106,6 +114,7 @@
 
         .contact-info a:hover {
             color: var(--accent);
+            text-shadow: var(--glow-text);
         }
 
         .nav-section {
@@ -124,17 +133,17 @@
         .nav-links {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 0.3rem;
         }
 
         .nav-links a,
         .category-link {
-            padding: 0.75rem 1rem;
+            padding: 0.5rem 0.5rem;
             background: transparent;
             color: var(--text-primary);
             text-decoration: none;
             border: 1px solid var(--border);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -144,6 +153,7 @@
             display: block;
             text-align: center;
             cursor: pointer;
+            border-radius: var(--radius-main);
         }
 
         .nav-links a::before,
@@ -163,6 +173,7 @@
         .category-link:hover {
             color: var(--bg-primary);
             border-color: var(--accent);
+            box-shadow: var(--glow);
         }
 
         .nav-links a:hover::before,
@@ -170,10 +181,21 @@
             left: 0;
         }
 
+        /*
         .category-link.active {
             background: rgba(0, 217, 255, 0.1);
             border-color: var(--accent);
             color: var(--accent);
+        }
+        */
+
+        .category-link.active::before {
+            left: 0;
+        }
+
+        .category-link.active {
+            color: var(--bg-primary);
+            border-color: var(--accent);
         }
 
         .menu-toggle {
@@ -197,6 +219,7 @@
         .menu-toggle:hover {
             border-color: var(--accent);
             color: var(--accent);
+            border-radius: var(--radius-main);
         }
 
         /* Main content */
@@ -252,7 +275,7 @@
         .project-card {
             background: var(--bg-secondary);
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: var(--radius-main);
             overflow: hidden;
             transition: all 0.3s ease;
             display: flex;
@@ -334,10 +357,14 @@
 
         .carousel-nav.prev {
             left: 0.5rem;
+            border-radius: var(--radius-main);
+            box-shadow: var(--shadow);
         }
 
         .carousel-nav.next {
             right: 0.5rem;
+            border-radius: var(--radius-main);
+            box-shadow: var(--shadow);
         }
 
         /* Carousel Indicators */
@@ -416,7 +443,7 @@
             background: rgba(0, 217, 255, 0.1);
             color: var(--accent);
             padding: 0.25rem 0.75rem;
-            border-radius: 4px;
+            border-radius: 2px;
             font-size: 0.75rem;
             font-weight: 500;
             border: 1px solid rgba(0, 217, 255, 0.2);
@@ -425,7 +452,7 @@
         .project-description {
             color: var(--text-secondary);
             font-size: 0.9rem;
-            line-height: 1.6;
+            line-height: 1.3;
             flex: 1;
         }
 
@@ -436,18 +463,20 @@
             color: var(--accent);
             text-decoration: none;
             border: 1px solid var(--accent);
-            font-size: 0.85rem;
+            font-size: 0.7rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             transition: all 0.3s ease;
             text-align: center;
             margin-top: auto;
+            border-radius: var(--radius-main);
         }
 
         .project-link:hover {
             background: var(--accent);
             color: var(--bg-primary);
+            box-shadow: var(--glow);
         }
 
         /* Lightbox */
@@ -493,6 +522,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: var(--radius-main);
         }
 
         .lightbox-close:hover {
@@ -531,6 +561,7 @@
 
             .menu-toggle {
                 display: flex;
+                box-shadow: var(--shadow);
             }
 
             main {
@@ -549,6 +580,11 @@
             body.sidebar-open {
                 overflow: hidden;
             }
+
+            body.sidebar-open .menu-toggle {
+                opacity: 0;
+                pointer-events: none;
+            }
         }
     </style>
 </head>
@@ -562,14 +598,14 @@
         <div class="sidebar-header">
             <h1 id="portfolio-name">Loading...</h1>
             <div class="contact-info">
-                <span id="portfolio-title">Game Developer</span><br>
+                <h3 id="portfolio-title">Game Developer</h3><br>
                 <a href="mailto:" id="portfolio-email">email@example.com</a>
                 <a href="tel:" id="portfolio-phone">+00 000 000 0000</a>
             </div>
         </div>
 
         <nav class="nav-section">
-            <h3>Links</h3>
+            <!-- <h3>Links</h3> -->
             <div class="nav-links">
                 <a href="#" id="resume-link" target="_blank">Resume</a>
                 <a href="#" id="github-link" target="_blank">GitHub</a>
@@ -579,7 +615,7 @@
         </nav>
 
         <nav class="nav-section">
-            <h3>Filter</h3>
+            <h3>Projects</h3>
             <div class="nav-links">
                 <div class="category-link active" data-category="all">All Projects</div>
                 <div class="category-link" data-category="professional">Professional</div>
@@ -607,304 +643,8 @@
         <img src="" alt="Lightbox Image" id="lightbox-img">
     </div>
 
+    <script src="portifolioData.js"></script>
     <script>
-        // Portfolio data
-       const portfolioData = {
-            name: "Leandro Dornela",
-            title: "Game Developer",
-            email: "leandro.dornela.dev@gmail.com",
-            phone: "+55 (32) 9 9943-2992",
-            links: {
-                resume: "Assets/resume_leandro_dornela_game_dev.pdf",
-                github: "https://github.com/LeandroDornela",
-                linkedin: "https://www.linkedin.com/in/leandrodornela",
-                artstation: "https://www.artstation.com/leandrodornela"
-            },
-            projects: [
-                {
-                    year: 2026,
-                    title: "GGJ26 - Magi Trium",
-                    tags: ["Unity", "Game Jam"],
-                    projectCategory: "jams",
-                    company: "",
-                    description: "Slash through corrupted creatures inspired in the Brazilian 'Folia de Reis' with a touch of dark fantasy. Change between the 3 Magi masks and use the different powers and play styles to destroy as much as you can from the corrupted hordes.",
-                    link: "https://globalgamejam.org/games/2026/magi-trium-4",
-                    media: [
-                        { type: "image", src: "Assets/magi_0.png" }
-                    ]
-                },
-                {
-                    year: 2025,
-                    title: "Procedural Floor Plan Generation Tool",
-                    tags: ["Unity", "Tool", "Procedural Generation"],
-                    projectCategory: "academic",
-                    company: "",
-                    description: "A Unity tool for generating architectural floor plans and buildings using procedural algorithms, zoning subdivision, connectivity rules, and quality evaluation.",
-                    link: "https://github.com/LeandroDornela/floor-plan-generator",
-                    media: [
-                        { type: "image", src: "Assets/floor_0.gif" },
-                        { type: "image", src: "Assets/floor_1.png" },
-                        { type: "image", src: "Assets/floor_2.png" }
-                    ]
-                },
-                {
-                    year: 2025,
-                    title: "Steering Behaviors for Autonomous Characters",
-                    tags: ["Unity"],
-                    projectCategory: "academic",
-                    company: "",
-                    description: "Unity project implementing classic Steering Behaviors for autonomous characters, originally proposed by Craig W. Reynolds.",
-                    link: "https://github.com/LeandroDornela/steering-behaviors",
-                    media: [
-                        { type: "image", src: "Assets/steering.gif" }
-                    ]
-                },
-                {
-                    year: 2024,
-                    title: "Friends Connection Status UI (MVVM)",
-                    tags: ["Unreal", "UI", "UMG"],
-                    projectCategory: "academic",
-                    company: "",
-                    description: "UI exercise focused on architecture rather than visuals, implementing a friends connection status screen using the MVVM pattern. Features two lists for connected and disconnected friends, tooltips with detailed player information on hover, and toaster notifications when a friend connects. Includes a testing Game Mode to simulate connections, disconnections, and initial friend status data.",
-                    link: "https://github.com/LeandroDornela/Unreal-UMG-exercise-friendsStatus",
-                    media: [
-                        { type: "image", src: "Assets/friendStatus_0.png" },
-                        { type: "image", src: "Assets/friendStatus_1.jpg" }
-                    ]
-                },
-                {
-                    year: 2024,
-                    title: "GGJ24 - Mortal Kombard",
-                    tags: ["Unity", "Game Jam"],
-                    projectCategory: "jams",
-                    company: "",
-                    description: "For the longest time, the King has not been able to laugh or even smile, so he created the Mortal Kombard tournament, to find the funniest subject in the whole kingdom. In the tournament , the subjects try to make each other and the king laugh, or be thrown in the pits below. Using a webcam, play the game with a friend, taking turns trying to make each other laugh. Using a face recognition software, the game can tell if the player is laughing or not. Whoever laughs is thrown in the pits and the other wins!",
-                    link: "https://globalgamejam.org/games/2024/mortal-kombard-4",
-                    media: [
-                        { type: "image", src: "Assets/bard_0.png" }
-                    ]
-                },
-                {
-                    year: 2023,
-                    title: "Reign of Titans",
-                    tags: ["Unity"],
-                    projectCategory: "professional",
-                    company: "Globant",
-                    description: "Card-based multiplayer battle game with unique NFT characters. Worked as a programmer implementing core gameplay mechanics, UI systems, basic AI, and internal tools. Collaborated in a remote, multicultural team. Built UI testing tools, a character inspection tool for generated 3D assets, and a simple AI bot for autonomous gameplay testing.",
-                    link: "https://reignoftitans.gg/",
-                    media: [
-                        { type: "image", src: "Assets/titans_0.png" },
-                        { type: "image", src: "Assets/titans_1.png" },
-                        { type: "image", src: "Assets/titans_2.png" },
-                    ]
-                },
-                {
-                    year: 2023,
-                    title: "GGJ23 - Bloody Roots",
-                    tags: ["Unity", "Game Jam"],
-                    projectCategory: "jams",
-                    company: "",
-                    description: "After the humans destroyed the environment, to protect itself, the vegetation needed to improve its destructive power. In this turn based strategy game you will help one of the agents of mother nature to claim back the earth after the humans destroyed it, and the only way to do so is by tainting your roots with blood.",
-                    link: "https://v3.globalgamejam.org/2023/games/bloody-roots-3-0",
-                    media: [
-                        { type: "image", src: "Assets/roots_0.png" },
-                        { type: "image", src: "Assets/roots_1.png" }
-                    ]
-                },
-                {
-                    year: 2022,
-                    title: "GGJ22 - See no light",
-                    tags: ["Unity", "Game Jam"],
-                    projectCategory: "jams",
-                    company: "",
-                    description: "Find your way through the dark and use the light to guide your way.",
-                    link: "https://v3.globalgamejam.org/2022/games/see-no-light-7",
-                    media: [
-                        { type: "image", src: "Assets/see_0.jpg" }
-                    ]
-                },
-                {
-                    year: 2021,
-                    title: "Sofiya",
-                    tags: ["Unity"],
-                    projectCategory: "professional",
-                    company: "Male Doll",
-                    description: "Platformer game featuring character projectiles, enemy interaction, and unlockable content galleries. Responsible for the full project architecture, feature implementation, VFX, asset integration, and contributions to level design and UI. Integrated Unity level-building tools to accelerate environment creation and delivered visual polishing.",
-                    link: "https://store.steampowered.com/app/1468420/Sexcraft__Sofiya_and_the_Lewd_Clan/",
-                    media: [
-                        { type: "image", src: "Assets/sofiya_0.jpg" },
-                        { type: "image", src: "Assets/sofiya_1.jpg" },
-                        { type: "image", src: "Assets/sofiya_2.jpg" }
-                    ]
-                },
-                {
-                    year: 2021,
-                    title: "GGJ21 - ILF: Intergalactic Lost and Found",
-                    tags: ["Unity", "Game Jam"],
-                    projectCategory: "jams",
-                    company: "",
-                    description: "Global Game Jam project about helping characters recover lost items despite language barriers. Implemented gameplay systems and delivered a complete playable prototype during the jam.",
-                    link: "https://play.unity.com/en/games/4f403e83-01b4-4c63-871b-9ea79e46a1a0/intergalactic-lost-found",
-                    media: [
-                        { type: "image", src: "Assets/ilf_0.png" },
-                        { type: "image", src: "Assets/ilf_1.png" }
-                    ]
-                },
-                {
-                    year: 2020,
-                    title: "Puzzle Games Collection",
-                    tags: ["Unity"],
-                    projectCategory: "professional",
-                    company: "Male Doll",
-                    description: "Multiple puzzle games including Furry Heroes, Magical Girl, DominaTrix, Summer Flowers, and Villain Project. Implemented all gameplay features, mini-games, dialogues, galleries, and graphics polishing. Created a reusable project template that enabled designers to rapidly build new games.",
-                    link: "https://store.steampowered.com/app/1389710/Magical_Girl/",
-                    media: [
-                        { type: "image", src: "Assets/puzzle_0.png" },
-                        { type: "image", src: "Assets/puzzle_1.png" },
-                        { type: "image", src: "Assets/puzzle_2.png" },
-                        { type: "image", src: "Assets/puzzle_3.jpg" }
-                    ]
-                },
-                {
-                    year: 2020,
-                    title: "Boyfriend's Rescue",
-                    tags: ["Unity"],
-                    projectCategory: "professional",
-                    company: "Male Doll",
-                    description: "Platformer where character skins grant unique abilities such as projectiles, shields, double jump, and grab & swing mechanics. Responsible for full architecture, implementation, and deployment. Solved complex tentacle animation using physics and math, and implemented an asset reuse strategy for richer environments.",
-                    link: "",
-                    media: [
-                        { type: "image", src: "Assets/boy_0.png" },
-                        { type: "image", src: "Assets/boy_1.jpg" },
-                        { type: "image", src: "Assets/boy_2.jpg" },
-                        { type: "image", src: "Assets/boy_3.jpg" },
-                        { type: "image", src: "Assets/boy_4.jpg" }
-                    ]
-                },
-                {
-                    year: 2019,
-                    title: "Neon Slash",
-                    tags: ["Unity", "Mobile"],
-                    projectCategory: "professional",
-                    company: "Guará Games",
-                    description: "Mobile casual game developed in Unity as part of an interdisciplinary team.",
-                    link: "https://www.youtube.com/watch?v=HNIH5le_C3k",
-                    media: [
-                        { type: "video", src: "https://www.youtube.com/embed/HNIH5le_C3k?si=3Ce4zjmhvNwr1CCV" }
-                    ]
-                },
-                {
-                    year: 2019,
-                    title: "Space Gens",
-                    tags: ["Unity"],
-                    projectCategory: "academic",
-                    description: "University project developed as a playful interface for audio recording to support children's literacy. Presented at the Brazilian Symposium on Games (SBGames). Implemented audio capture and spectrum visualization.",
-                    link: "",
-                    media: [
-                        { type: "image", src: "Assets/space_0.png" }
-                    ]
-                },
-                {
-                    year: 2019,
-                    title: "GGJ19 - Where Do I Belong",
-                    tags: ["Unity", "Game Jam"],
-                    projectCategory: "jams",
-                    description: "Global Game Jam project developed entirely from scratch. Implemented custom platforming mechanics and a dynamic lobby that changes based on player choices.",
-                    link: "https://v3.globalgamejam.org/2019/games/where-do-i-belong",
-                    media: [
-                        { type: "image", src: "Assets/belong_0.jpg" },
-                        { type: "image", src: "Assets/belong_1.png" }
-                    ]
-                },
-                {
-                    year: 2018,
-                    title: "Inferno de Tande",
-                    tags: ["Unity", "Mobile"],
-                    projectCategory: "professional",
-                    company: "Guará Games",
-                    description: "Casual side-scroller game with 9 levels and stylized art. Implemented gameplay systems, level selector, performance optimizations, and particle effects.",
-                    link: "https://www.youtube.com/watch?v=6QXL92rhyB4",
-                    media: [
-                        { type: "video", src: "https://www.youtube.com/embed/6QXL92rhyB4" }
-                    ]
-                },
-                {
-                    year: 2018,
-                    title: "Cellular Organelles Quiz",
-                    tags: ["Unity"],
-                    projectCategory: "professional",
-                    company: "Guará Games",
-                    description: "Quiz game prototype about cellular organelles designed for children. Implemented gameplay systems including scoreboard and video integration.",
-                    link: "",
-                    media: [
-                        { type: "image", src: "Assets/cells_0.jpg" }
-                    ]
-                },
-                {
-                    year: 2018,
-                    title: "Combat Mechanics Prototype",
-                    tags: ["Unity"],
-                    projectCategory: "academic",
-                    company: "",
-                    description: "Prototype combat system featuring movement, melee combat, special abilities, experience system, checkpoints, object interaction, and basic AI.",
-                    link: "https://github.com/LeandroDornela/CombatMechanicsPrototype",
-                    media: [
-                        { type: "video", src: "https://www.youtube.com/embed/XE3fpRp-kpI" }
-                    ]
-                },
-                {
-                    year: 2018,
-                    title: "2.5D Platform Prototype",
-                    tags: ["Unity"],
-                    projectCategory: "academic",
-                    company: "",
-                    description: "2.5D platform movement prototype created to explore perspective-based gameplay. Implemented mechanics that allow smooth depth transitions and traversal of loops while maintaining readable player control.",
-                    link: "",
-                    media: [
-                        { type: "video", src: "https://www.youtube.com/embed/RvPmCpm1mi0" }
-                    ]
-                },
-                {
-                    year: 2018,
-                    title: "GGJ18 - Alex Vortex vs Depression",
-                    tags: ["Unity", "Game Jam"],
-                    projectCategory: "jams",
-                    company: "",
-                    description: "Global Game Jam project. Implemented core gameplay mechanics, modeled the main character weapon, and created a fake wireframe-inspired visual style. The player automatically shoots following the rhythm of the music.",
-                    link: "https://v3.globalgamejam.org/2018/games/alex-vortex-vs-depression",
-                    media: [
-                        { type: "image", src: "Assets/alex_0.jpg" },
-                        { type: "image", src: "Assets/alex_1.png" }
-                    ]
-                },
-                {
-                    year: 2017,
-                    title: "GLSL Sphere Path Tracer",
-                    tags: ["Computer Graphics", "GLSL"],
-                    projectCategory: "academic",
-                    company: "",
-                    description: "GLSL path tracer adapted from a basic ray tracing implementation over a single weekend. Features sphere-based geometry, ray–sphere intersections, reflections, and progressive image accumulation. Focused on rapidly extending a ray tracer into a physically based rendering approach while deepening understanding of light transport and GPU parallelism.",
-                    link: "",
-                    media: [
-                        { type: "video", src: "https://www.youtube.com/embed/pXNWrYPMNBI" }
-                    ]
-                },
-                {
-                    year: 2016,
-                    title: "Crash Ball",
-                    tags: ["Computer Graphics", "OpenGL"],
-                    projectCategory: "academic",
-                    company: "",
-                    description: "Mini-game developed using OpenGL immediate mode. Responsible for all graphics implementation, 3D models, and UI elements. Served as an introduction to OpenGL and collision detection concepts.",
-                    link: "https://github.com/LeandroDornela/CrashBall",
-                    media: [
-                        { type: "video", src: "https://www.youtube.com/embed/p-y4G1g7aUE" }
-                    ]
-                }
-            ]
-        };
-
-
         // Set portfolio header info
         document.getElementById('portfolio-name').textContent = portfolioData.name;
         document.getElementById('portfolio-title').textContent = portfolioData.title;
@@ -1105,6 +845,7 @@
         window.openLightbox = openLightbox;
 
         // Keyboard navigation
+        /*
         document.addEventListener('keydown', (e) => {
             if (lightbox.classList.contains('active')) return; // Don't navigate carousel when lightbox is open
             
@@ -1114,6 +855,7 @@
                 window.carouselStates.forEach((_, index) => moveCarousel(index, 1));
             }
         });
+        */
 
         // Mobile sidebar toggle
         const menuToggle = document.getElementById('menu-toggle');
